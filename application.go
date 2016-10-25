@@ -43,7 +43,7 @@ type IPAddressPerTask struct {
 
 // Discovery provides info about ports expose by Ip-per-task functionality
 type Discovery struct {
-	Ports *[]Port `json:"ports,ommitempty"`
+	Ports *[]Port `json:"ports,omitempty"`
 }
 
 // Port provides info about ports used by Ip-per-task
