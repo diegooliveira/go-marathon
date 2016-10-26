@@ -599,7 +599,7 @@ func TestIPAddressPerTask(t *testing.T) {
 
 }
 
-func TestDiscovery(t *testing.T) {
+func TestIPAddressPerTaskDiscovery(t *testing.T) {
 	disc := Discovery{}
 	assert.Nil(t, disc.Ports)
 
