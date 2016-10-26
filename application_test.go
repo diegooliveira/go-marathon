@@ -579,15 +579,24 @@ func TestSetIpPerTask(t *testing.T) {
 	assert.Equal(t, 0, len(*app.PortDefinitions))
 }
 
-func TestEmptyIpPerTask(t *testing.T) {
-	app := Application{}
-	assert.Nil(t, app.IPAddressPerTask)
+func TestIPAddressPerTask(t *testing.T) {
+	ipPerTask := IPAddressPerTask{}
+	assert.Nil(t, ipPerTask.Groups)
+	assert.Nil(t, ipPerTask.Labels)
 
-	app.SetIPAddressPerTask(&IPAddressPerTask{})
-	assert.NotNil(t, app.IPAddressPerTask)
+	ipPerTask.AddGroup("label")
+	ipPerTask.AddLabel("key", "value")
 
-	app.EmptyIPAddressPerTask()
-	assert.Nil(t, app.IPAddressPerTask)
+	assert.Equal(t, 1, len(*ipPerTask.Groups))
+	assert.Equal(t, "label", (*ipPerTask.Groups)[0])
+	assert.Equal(t, "value", (*ipPerTask.Labels)["key"])
+
+	ipPerTask.EmptyGroups()
+	assert.Equal(t, 0, len(*ipPerTask.Groups))
+
+	ipPerTask.EmptyLabels()
+	assert.Equal(t, 0, len(*ipPerTask.Labels))
+
 }
 
 func TestDiscovery(t *testing.T) {
@@ -596,7 +605,10 @@ func TestDiscovery(t *testing.T) {
 
 	disc.AddPort(Port{})
 	assert.NotNil(t, disc.Ports)
+	assert.Equal(t, 1, len(*disc.Ports))
 
 	disc.EmptyPorts()
+	assert.NotNil(t, disc.Ports)
 	assert.Equal(t, 0, len(*disc.Ports))
+
 }
