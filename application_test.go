@@ -573,7 +573,7 @@ func TestSetIPPerTask(t *testing.T) {
 	assert.Equal(t, 1, len(app.Ports))
 	assert.Equal(t, 1, len(*app.PortDefinitions))
 
-	app.SetIPAddressPerTask(&IPAddressPerTask{})
+	app.SetIPAddressPerTask(IPAddressPerTask{})
 	assert.NotNil(t, app.IPAddressPerTask)
 	assert.Equal(t, 0, len(app.Ports))
 	assert.Equal(t, 0, len(*app.PortDefinitions))

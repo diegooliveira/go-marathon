@@ -132,10 +132,10 @@ type DeleteAppOpts struct {
 // SetIPAddressPerTask defines that the application will have a IP address defines by a external agent.
 // This configuration is not allowed to be used with Port or PortDefinitions. Thus, the implementation
 // clears both.
-func (r *Application) SetIPAddressPerTask(ipAddressPerTask *IPAddressPerTask) *Application {
+func (r *Application) SetIPAddressPerTask(ipAddressPerTask IPAddressPerTask) *Application {
 	r.Ports = make([]int, 0)
 	r.EmptyPortDefinitions()
-	r.IPAddressPerTask = ipAddressPerTask
+	r.IPAddressPerTask = &ipAddressPerTask
 
 	return r
 }
