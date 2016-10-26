@@ -565,7 +565,7 @@ func TestAppExistAndRunning(t *testing.T) {
 	assert.False(t, client.appExistAndRunning("no_such_app"))
 }
 
-func TestSetIpPerTask(t *testing.T) {
+func TestSetIPPerTask(t *testing.T) {
 	app := Application{}
 	app.Ports = append(app.Ports, 10)
 	app.AddPortDefinition(PortDefinition{})
